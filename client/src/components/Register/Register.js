@@ -4,8 +4,10 @@ import './Register.css';
 import { registerUser } from '../../redux/actions/users/userActions';
 import Loading from '../Loading/Loading';
 import ErrorMessage from '../DisplayMessage/ErrorMessage';
+import { useNavigate } from 'react-router-dom';
 
-const Register = ({ history }) => {
+const Register = () => {
+  const navigate = useNavigate()
   const [name, setname] = useState('');
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
@@ -20,7 +22,7 @@ const Register = ({ history }) => {
     e.preventDefault();
     dispatch(registerUser(name, email, password));
     console.log(userInfo, loading, error);
-    if (userInfo !== null && error === undefined) history.push('/');
+    if (userInfo !== null && error === undefined) navigate('/');
   };
 
   return (
